@@ -1,19 +1,22 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Route, Routes } from "react-router";
+import { BrowserRouter } from "react-router-dom";
 
 import Navbar from './components/Navbar';
 import TodosPage from './components/TodosPage';
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
+    <Route>
       <Navbar />
-      <Switch>
-        <Route exact path="/">
+      <Routes>
+        <Route path="/">
           <TodosPage />
         </Route>
-      </Switch>
-    </Router>
+      </Routes>
+    </Route>
+    </BrowserRouter>
   );
 }
 
