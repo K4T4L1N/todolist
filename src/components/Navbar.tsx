@@ -61,7 +61,6 @@ const Navbar = () => {
         flexGrow={1}
       >
         <MenuItem to="/">Todo</MenuItem>
-        <MenuItem to="/other">Other Page</MenuItem>
       </Box>
     </Flex>
   );
