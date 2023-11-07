@@ -1,4 +1,6 @@
-# Vite + React + Chakra UI Todo
+# React Tutorial repo
+#Vite
+#Chakra
 
 ## Installation
 
