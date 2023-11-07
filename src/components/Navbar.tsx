@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { Box, Heading, Flex, Link } from '@chakra-ui/react';
+import { Box, Heading, Flex, Link } from '@chakra-ui/core';
 
 interface IMenuItemProps {
   children: React.ReactNode;

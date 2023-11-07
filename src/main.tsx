@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { ThemeProvider, CSSReset, theme } from '@chakra-ui/react';
+import { ThemeProvider, CSSReset, theme } from '@chakra-ui/core';
 
 import App from './App';
 

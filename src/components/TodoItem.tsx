@@ -7,7 +7,7 @@ import {
   IconButton,
   useToast,
   useClipboard,
-} from '@chakra-ui/react';
+} from '@chakra-ui/core';
 
 import { Todo } from '../stores/todo-store';
 import { TodoStore } from '../stores/todo-store';

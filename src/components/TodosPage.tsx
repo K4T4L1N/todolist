@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Flex, Text, Tag } from '@chakra-ui/react';
+import { Box, Flex, Text, Tag } from '@chakra-ui/core';
 
 import { useObserver } from 'mobx-react-lite';
 
