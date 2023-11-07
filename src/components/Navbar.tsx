@@ -33,7 +33,7 @@ const Navbar = () => {
       justify="space-between"
       wrap="wrap"
       padding="1.5rem"
-      bg="blue.500"
+      bg="purple.500"
       color="white"
     >
       <Flex align="center" mr={5}>
@@ -60,8 +60,7 @@ const Navbar = () => {
         alignItems="center"
         flexGrow={1}
       >
-        <MenuItem to="/">Todo</MenuItem>
-        <MenuItem to="/other">Other Page</MenuItem>
+        <MenuItem to="/">TaskManager</MenuItem>
       </Box>
     </Flex>
   );

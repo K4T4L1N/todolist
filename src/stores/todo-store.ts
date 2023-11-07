@@ -11,12 +11,12 @@ export type Filters = 'All' | 'Completed' | 'Active'
 
 export class TodoStore {
   @observable todos: Todo[] = [
-    { id: uuidv4(), title: "Item #1", completed: false },
-    { id: uuidv4(), title: "Item #2", completed: false },
-    { id: uuidv4(), title: "Item #3", completed: false },
-    { id: uuidv4(), title: "Item #4", completed: false },
-    { id: uuidv4(), title: "Item #5", completed: true },
-    { id: uuidv4(), title: "Item #6", completed: false },
+    { id: uuidv4(), title: "Task #1", completed: false },
+    { id: uuidv4(), title: "Task #2", completed: false },
+    { id: uuidv4(), title: "Task #3", completed: false },
+    { id: uuidv4(), title: "Task #4", completed: false },
+    { id: uuidv4(), title: "Task #5", completed: false },
+    { id: uuidv4(), title: "Task #6", completed: false },
   ]
 
   @observable filter: Filters = 'All';

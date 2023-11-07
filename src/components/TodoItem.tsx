@@ -8,9 +8,10 @@ import {
   useToast,
   useClipboard,
 } from '@chakra-ui/core';
-
+import { useState } from "react";
 import { Todo } from '../stores/todo-store';
 import { TodoStore } from '../stores/todo-store';
+import { Checkbox } from './checkbox';
 
 interface ITodoItemProps extends Todo {
   hasDivider: boolean;
@@ -28,6 +29,11 @@ const TodoItem: React.FC<ITodoItemProps> = ({
 }) => {
   const toast = useToast();
   const { onCopy, hasCopied } = useClipboard(title);
+  const [is3dCheckBox, setAgreement] = useState(false);
+
+  const handleChange = (event) => {
+    setAgreement(event.target.checked);
+  }
 
   useEffect(() => {
     if (hasCopied) {
@@ -50,14 +56,16 @@ const TodoItem: React.FC<ITodoItemProps> = ({
       duration: 3000,
       isClosable: true,
     });
-    
+
     
   };
 
   return (
     <>
-      <Flex p="10px" alignItems="center">
+      <Flex  p="10px" alignItems="center">
+         <input id="is3dCheckBox" type="checkbox" onChange={handleChange} onClick={() => toggleTodo(id)} />
         <Text
+          ml="2"
           cursor="pointer"
           onClick={() => toggleTodo(id)}
           isTruncated

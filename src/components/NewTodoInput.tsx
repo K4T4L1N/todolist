@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Flex, Input, IconButton, useToast } from '@chakra-ui/core';
 import { TodoStore } from '../stores/todo-store';
 
+
 interface INewTodoInputProps {
   addTodo: TodoStore['addTodo'];
 }
@@ -48,7 +49,7 @@ const NewTodoInput: React.FC<INewTodoInputProps> = ({ addTodo }) => {
       />
       <IconButton
         type="submit"
-        variantColor="blue"
+        variantColor="purple"
         ml="3"
         aria-label="Add todo"
         icon="add"

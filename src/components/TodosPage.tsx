@@ -26,13 +26,14 @@ const TodosPage = () => {
       >
         <Box p="4">
           <NewTodoInput addTodo={todoStore.addTodo} />
-          <Box mt="3">
+          <Box mt="3" justifyContent="center">
             {filterTypes.map((filter) => (
               <Tag
-                mr="2"
+              
+                mr="4"
                 key={filter}
                 as="button"
-                onClick={() => filterTodos(filter as Filters)}
+                onClick={() => filterTodos(filter as Filters) }
               >
                 {filter}
               </Tag>
