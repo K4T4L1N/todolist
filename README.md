@@ -1,4 +1,6 @@
-# Vite + React + Chakra UI Todo
+# Vite
+#React
+#Chakra UI Todo
 
 ## Installation
 
