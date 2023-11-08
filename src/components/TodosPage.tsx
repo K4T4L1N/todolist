@@ -20,13 +20,13 @@ const TodosPage = () => {
     <Flex p="5" justifyContent="center">
       <Box
         borderWidth="1px"
-        width={{ base: '100%', md: '40%' }}
+        width={{ base: '100%', md: '50%' }}
         rounded="lg"
         overflow="hidden"
       >
         <Box p="4">
           <NewTodoInput addTodo={todoStore.addTodo} />
-          <Box mt="3" justifyContent="center">
+          <Box mt="2" justifyContent="center">
             {filterTypes.map((filter) => (
               <Tag
               
@@ -47,12 +47,10 @@ const TodosPage = () => {
             )}
             {todoStore.filteredTodos.map((todo, idx) => (
               <TodoItem
-                key={todo.id}
-                {...todo}
-                hasDivider={todoStore.total !== idx + 1}
-                removeTodo={todoStore.removeTodo}
-                toggleTodo={todoStore.toggleTodo}
-              />
+              editTodo={undefined} {...todo}
+              hasDivider={todoStore.total !== idx + 1}
+              removeTodo={todoStore.removeTodo}
+              toggleTodo={todoStore.toggleTodo}              />
             ))}
           </Box>
         </Box>

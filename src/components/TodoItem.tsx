@@ -17,6 +17,7 @@ interface ITodoItemProps extends Todo {
   hasDivider: boolean;
   removeTodo: TodoStore['removeTodo'];
   toggleTodo: TodoStore['toggleTodo'];
+  editTodo: TodoStore['editTodo']
 }
 
 const TodoItem: React.FC<ITodoItemProps> = ({
@@ -31,9 +32,6 @@ const TodoItem: React.FC<ITodoItemProps> = ({
   const { onCopy, hasCopied } = useClipboard(title);
   const [is3dCheckBox, setAgreement] = useState(false);
 
-  const handleChange = (event) => {
-    setAgreement(event.target.checked);
-  }
 
   useEffect(() => {
     if (hasCopied) {
@@ -57,13 +55,22 @@ const TodoItem: React.FC<ITodoItemProps> = ({
       isClosable: true,
     });
 
-    
   };
+
+  function editTodo(title: string): React.MouseEventHandler<any> | undefined {
+    throw new Error('Function not implemented.');
+  }
 
   return (
     <>
       <Flex  p="10px" alignItems="center">
-         <input id="is3dCheckBox" type="checkbox" onChange={handleChange} onClick={() => toggleTodo(id)} />
+         <IconButton
+            aria-label="Complete"
+            icon="check"
+            onClick={() => toggleTodo(id)}
+            textDecoration={completed ? 'line-through' : 'none'}
+          />
+          
         <Text
           ml="2"
           cursor="pointer"
@@ -74,12 +81,14 @@ const TodoItem: React.FC<ITodoItemProps> = ({
         >
           {title}
         </Text>
+        
         <Box>
-          <IconButton
+        <IconButton
             aria-label="Copy to clipboard"
             icon="copy"
             onClick={onCopy}
           />
+
           <IconButton
             ml="2"
             aria-label="Delete todo"
