@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Flex,
@@ -8,7 +8,6 @@ import {
   useToast,
   useClipboard,
 } from '@chakra-ui/core';
-import { useState } from "react";
 import { Todo } from '../stores/todo-store';
 import { TodoStore } from '../stores/todo-store';
 import { Checkbox } from './checkbox';
