@@ -5,6 +5,7 @@ import {
   Divider,
   Text,
   IconButton,
+  Input,
   useToast,
   useClipboard,
 } from '@chakra-ui/core';
@@ -16,7 +17,7 @@ interface ITodoItemProps extends Todo {
   hasDivider: boolean;
   removeTodo: TodoStore['removeTodo'];
   toggleTodo: TodoStore['toggleTodo'];
-  editTodo: TodoStore['editTodo']
+  editTodo: TodoStore['editTodo'];
 }
 
 const TodoItem: React.FC<ITodoItemProps> = ({
@@ -26,11 +27,13 @@ const TodoItem: React.FC<ITodoItemProps> = ({
   hasDivider,
   removeTodo,
   toggleTodo,
+  editTodo,
 }) => {
   const toast = useToast();
   const { onCopy, hasCopied } = useClipboard(title);
   const [is3dCheckBox, setAgreement] = useState(false);
-
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedText, setEditedText] = useState(title);
 
   useEffect(() => {
     if (hasCopied) {
@@ -53,48 +56,103 @@ const TodoItem: React.FC<ITodoItemProps> = ({
       duration: 3000,
       isClosable: true,
     });
-
   };
 
-  function editTodo(title: string): React.MouseEventHandler<any> | undefined {
-    throw new Error('Function not implemented.');
-  }
+  const handleEditTodo = () => {
+    setIsEditing(true);
+  };
+
+  const handleSaveEdit = () => {
+    if (editedText.trim() !== '') {
+      editTodo(id, editedText);
+      setIsEditing(false);
+      toast({
+        title: 'Success',
+        description: 'Todo updated',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      });
+    }
+  };
+
+  const handleCancelEdit = () => {
+    setEditedText(title);
+    setIsEditing(false);
+  };
 
   return (
     <>
-      <Flex  p="10px" alignItems="center">
-         <IconButton
-            aria-label="Complete"
-            icon="check"
-            onClick={() => toggleTodo(id)}
-            textDecoration={completed ? 'line-through' : 'none'}
-          />
-          
-        <Text
-          ml="2"
-          cursor="pointer"
-          onClick={() => toggleTodo(id)}
-          isTruncated
-          flex="1"
-          textDecoration={completed ? 'line-through' : 'none'}
-        >
-          {title}
-        </Text>
-        
-        <Box>
+      <Flex p="10px" alignItems="center">
         <IconButton
-            aria-label="Copy to clipboard"
-            icon="copy"
-            onClick={onCopy}
-          />
+          aria-label="Complete"
+          icon="check"
+          onClick={() => toggleTodo(id)}
+          textDecoration={completed ? 'line-through' : 'none'}
+        />
 
-          <IconButton
+        {isEditing ? (
+          <Input
             ml="2"
-            aria-label="Delete todo"
-            icon="delete"
-            variantColor="red"
-            onClick={() => handleRemoveTodo(id)}
+            value={editedText}
+            onChange={(e) => setEditedText(e.target.value)}
+            onBlur={handleSaveEdit}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleSaveEdit();
+              }
+              if (e.key === 'Escape') {
+                handleCancelEdit();
+              }
+            }}
           />
+        ) : (
+          <Text
+            ml="2"
+            cursor="pointer"
+            onClick={() => toggleTodo(id)}
+            isTruncated
+            textDecoration={completed ? 'line-through' : 'none'}
+          >
+            {title}
+          </Text>
+        }
+
+        <Box>
+
+
+          {isEditing ? (
+            <>
+              <IconButton
+                ml="2"
+                aria-label="Save edit"
+                icon="check"
+                onClick={handleSaveEdit}
+              />
+              <IconButton
+                ml="2"
+                aria-label="Cancel edit"
+                icon="close"
+                onClick={handleCancelEdit}
+              />
+            </>
+          ) : (
+            <>
+              <IconButton
+                ml="2"
+                aria-label="Edit todo"
+                icon="edit"
+                onClick={handleEditTodo}
+              />
+              <IconButton
+                ml="2"
+                aria-label="Delete todo"
+                icon="delete"
+                variantColor="red"
+                onClick={() => handleRemoveTodo(id)}
+              />
+            </>
+          )}
         </Box>
       </Flex>
       {hasDivider && <Divider />}
